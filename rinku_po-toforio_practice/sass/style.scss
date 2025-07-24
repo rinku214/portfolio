@@ -1,0 +1,713 @@
+@use "color";
+@use "breakpoints";
+
+body {
+  font-family: "Oswald", "Noto Sans JP", sans-serif;
+  color: color.$cl-black;
+
+  &.is-fixed {
+    overflow: hidden;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px 6px 30px;
+  width: 160px;
+  margin: 0 auto;
+
+  &--bg {
+    background-color: color.$white;
+
+    .button-text {
+      color: color.$bg-dark;
+    }
+  }
+
+  &--border {
+    border: 1px solid color.$white;
+
+    .button-text {
+      color: color.$white;
+    }
+  }
+  &-icon {
+    width: 24px;
+    display: flex;
+    align-items: center;
+  }
+  &-icon-path {
+    fill: color.$white;
+
+    &--contact {
+      fill: color.$bg-dark;
+    }
+  }
+  &-text {
+    margin-left: 10px;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    color: color.$white;
+  }
+}
+
+// header
+.header {
+  background-color: color.$bg-dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+
+  &-container {
+    position: relative;
+    width: 100%;
+  }
+
+  &-logo {
+    display: inline-block;
+    padding: 14px 24px;
+    font-size: 20px;
+    color: color.$white;
+  }
+
+  &-menu-button {
+    border: none;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 30px;
+    height: 36px;
+    overflow: hidden;
+    color: transparent;
+    background: url(../img/bg_menu.png) center center no-repeat;
+    background-size: 100% auto;
+
+    &.is-checked {
+      background: url(../img/bg_menu-close.png) center center no-repeat;
+      background-size: 100% auto;
+    }
+  }
+
+  &-nav-list {
+    height: calc(100vh - 88px);
+    border-top: 1px solid color.$white;
+    padding-top: 60px;
+    display: none;
+  }
+
+  &-nav-item {
+    & + & {
+      margin-top: 24px;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 9999;
+  right: 1%;
+  top: 14%;
+  color: color.$bg-dark;
+
+  &-icon {
+    width: 40px;
+    transition: transform 0.2s;
+
+    &.active {
+      transform: scale(1.1); // アニメーション
+    }
+  }
+
+  &-count {
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+//fv
+.fv {
+  position: relative;
+
+  &-contents {
+    position: absolute;
+    bottom: 26px;
+    left: 0;
+    width: 100%;
+    height: 209px;
+    background: url(../img/sp/bg_fv.png) center center no-repeat;
+    background-size: 100% auto;
+  }
+
+  &-heading {
+  }
+
+  &-heading-main {
+    display: block;
+    font-size: 40px;
+    letter-spacing: 0.1em;
+  }
+
+  &-heading-sub {
+    margin-top: 12px;
+    display: block;
+    font-size: 14px;
+  }
+}
+
+//section
+.section {
+  padding: 48px 0;
+
+  &-inner {
+    padding: 0 32px;
+  }
+
+  &-head {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+
+    &--center {
+      text-align: center;
+    }
+
+    &-text {
+    }
+  }
+
+  &-head-main {
+    font-size: 40px;
+    letter-spacing: 0.1em;
+  }
+
+  &-head-sub {
+    font-size: 11px;
+  }
+
+  &-lead-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  &-skills-main {
+    font-size: 45px;
+  }
+}
+
+//service
+.service {
+  &-list {
+  }
+
+  &-item {
+    & + & {
+      margin-top: 40px;
+    }
+  }
+
+  &-item-img {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  &-item-name {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  &-item-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  &-contents {
+    margin-top: 40px;
+  }
+}
+
+//Skills
+.skills {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 20px;
+
+  .skill {
+    margin-bottom: 16px;
+
+    &-text {
+      display: none;
+      padding: 10px 0 0 0;
+    }
+
+    .skill-name {
+      font-weight: bold;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .skill-bar {
+      background: #ddd;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .skill-level {
+        height: 100%;
+        background: #67c5ff;
+        transition: width 1s ease;
+
+        &.html {
+          width: 65%;
+        }
+        &.css {
+          width: 50%;
+        }
+        &.scss {
+          width: 65%;
+        }
+        &.js {
+          width: 60%;
+        }
+        &.jQuery {
+          width: 50%;
+        }
+        // 他の言語を追加する場合はここに書き足してOK
+      }
+    }
+  }
+}
+
+//works
+.works {
+  background-color: color.$bg-light;
+
+  &-list {
+    margin-top: 25px;
+  }
+
+  &-item {
+    & + & {
+      margin-top: 40px;
+    }
+  }
+
+  &-item-img {
+    margin-bottom: 12px;
+
+    img {
+      box-shadow: 0 4px 15px 0 rgba(color.$black, 0.15);
+    }
+  }
+
+  &-item-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  &-item-link {
+    text-decoration: underline;
+    font-size: 14px;
+  }
+}
+
+//about
+.about {
+  &-container {
+  }
+
+  &-img {
+    margin-bottom: 32px;
+    img {
+      box-shadow: 0 4px 15px 0 rgba(color.$black, 0.15);
+    }
+  }
+
+  &-text-contents {
+  }
+
+  &-text {
+    font-size: 16px;
+    line-height: 1.6;
+
+    & + & {
+      margin-top: 1em;
+    }
+  }
+}
+
+//flow
+.flow {
+  background-color: color.$bg-light;
+
+  &-list {
+    margin-top: 64px;
+  }
+
+  &-item {
+    position: relative;
+    border: 1px solid color.$cl-border;
+    padding: 46px 16px 24px;
+
+    & + & {
+      margin-top: 46px;
+    }
+  }
+
+  &-item-num {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    background-color: color.$bg-dark;
+    color: color.$white;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-item-img {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  &-item-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &-item-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+//message
+.message {
+  &-container {
+  }
+
+  &-img {
+    margin-bottom: 32px;
+
+    img {
+      box-shadow: 0 4px 15px 0 rgba(color.$black, 0.15);
+    }
+  }
+
+  &-text-contents {
+  }
+
+  &-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+//page-bottom
+.page-bottom {
+  color: color.$white;
+
+  &-item {
+    padding: 40px;
+
+    &--contact {
+      background-color: color.$bg-gray-l;
+    }
+
+    &--twitter {
+      background-color: color.$bg-dark;
+    }
+  }
+}
+
+//footer
+.footer {
+  text-align: center;
+  padding: 10px;
+
+  &-copy {
+    font-size: 11px;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+}
+
+/*------------------------------------
+//pc
+------------------------------------*/
+@include breakpoints.mq("pc") {
+  .wrapper {
+    display: flex;
+  }
+
+  .main {
+    flex-basis: 79.2%;
+  }
+
+  .header {
+    position: relative;
+    flex-basis: 20.8%;
+    padding: 50px 20px;
+
+    &-container {
+      width: 160px;
+      margin: 0 auto;
+      position: sticky;
+      top: 50px;
+    }
+
+    &-logo {
+      font-size: 30px;
+      justify-self: 0.12em;
+      line-height: 1;
+    }
+
+    &-menu-button {
+      display: none;
+    }
+
+    &-nav-list {
+      border: none;
+      display: block;
+    }
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 9999;
+    right: 0.99%;
+    top: 1%;
+    color: color.$bg-dark;
+
+    &-icon {
+      width: 44px;
+      transition: transform 0.2s;
+
+      &.active {
+        transform: scale(1.1); // アニメーション
+      }
+    }
+
+    &-count {
+      font-weight: bold;
+      font-size: 25px;
+    }
+  }
+
+  .skills {
+    padding: 0 0;
+
+    .skill {
+      margin-bottom: 20px;
+      margin-top: 10px;
+
+      &-text {
+        display: none;
+      }
+    }
+  }
+
+  .button {
+    transition: background 0.3s, color 0.3s, opacity 0.3s;
+
+    &:hover {
+      background-color: color.$white;
+
+      .button-icon-path {
+        fill: color.$bg-dark;
+      }
+
+      .button-text {
+        color: color.$bg-dark;
+      }
+    }
+
+    &--bg {
+      color: color.$bg-dark;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .section {
+    &-inner {
+      max-width: calc(880px + 32px * 2);
+      margin: 0 auto;
+    }
+
+    &-head {
+      margin-bottom: 24px;
+
+      &-text-message {
+        white-space: nowrap;
+      }
+
+      &-sub {
+        font-size: 15px;
+      }
+    }
+
+    &-head-main {
+      font-size: 60px;
+    }
+  }
+
+  .fv {
+    &-contents {
+      background: url(../img/bg_fv.png) center center no-repeat;
+      background-size: 100% auto;
+      bottom: 100px;
+      left: 0;
+      max-width: 627px;
+      height: 174px;
+      padding-top: 24px;
+      padding-left: 96px;
+    }
+  }
+
+  .service {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8%;
+    }
+
+    &-item {
+      & + & {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .works {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8%;
+    }
+
+    &-item {
+      & + & {
+        margin-top: 0;
+      }
+
+      &-img {
+        transition: transform 1s ease-in-out;
+
+        &:hover img {
+          transform: scale(1.12);
+        }
+      }
+    }
+  }
+
+  .about {
+    &-container {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 40px;
+    }
+  }
+
+  .flow {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    &-item {
+      & + & {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .message {
+    &-text-block {
+      text-align: center;
+    }
+
+    &-head {
+      margin-bottom: 16px;
+
+      &-main,
+      &-sub {
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 40px;
+    }
+  }
+
+  .page-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &-item {
+      padding: 54px 10px;
+    }
+  }
+}
+
+/*------------------------------------
+//tb
+------------------------------------*/
+@include breakpoints.mq("tb") {
+  .section {
+    &-head-main {
+      font-size: 54px;
+    }
+
+    &-head-sub {
+      font-size: 15px;
+    }
+
+    &-head-main {
+      font-size: 53px;
+    }
+  }
+
+  .skills {
+    padding: 0 30px;
+  }
+
+  .fv {
+    &-contents {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  .flow {
+    &-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 10px;
+    }
+  }
+}
